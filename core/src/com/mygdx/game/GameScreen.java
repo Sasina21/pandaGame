@@ -16,12 +16,13 @@ public class GameScreen extends ScreenAdapter {
 	private Panda panda;
 	
 	World world;
+	WorldRenderer worldRenderer;
 	
 	public GameScreen(PandaGame pandaGame){
 		this.pandaGame = pandaGame;
 		pandaImg = new Texture("panda.png");
 		world = new World(pandaGame);
-		//panda = world.getPanda();
+		worldRenderer = new WorldRenderer(pandaGame,world);
 
 	}
 	
@@ -30,11 +31,7 @@ public class GameScreen extends ScreenAdapter {
 		update(delta);
 		Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		SpriteBatch batch = pandaGame.batch;
-        batch.begin();
-        Vector2 pos = world.getPanda().getPosition();
-        batch.draw(pandaImg, pos.x, pos.y);
-        batch.end();
+		worldRenderer.render(delta);
     }
 	
 	 private void update(float delta) {
