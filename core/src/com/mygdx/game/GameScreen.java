@@ -6,18 +6,23 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
  
 public class GameScreen extends ScreenAdapter {
 	private PandaGame pandaGame;
+	
 	private Texture pandaImg;
-	private int x;
-    private int y;
+	
+	private Panda panda;
+	
+	World world;
 	
 	public GameScreen(PandaGame pandaGame){
 		this.pandaGame = pandaGame;
 		pandaImg = new Texture("panda.png");
-		x = 0;
-        y = 170;
+		world = new World(pandaGame);
+		//panda = world.getPanda();
+
 	}
 	
 	@Override
@@ -27,15 +32,17 @@ public class GameScreen extends ScreenAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		SpriteBatch batch = pandaGame.batch;
         batch.begin();
-        batch.draw(pandaImg, x, y);
+        Vector2 pos = world.getPanda().getPosition();
+        batch.draw(pandaImg, pos.x, pos.y);
         batch.end();
     }
+	
 	 private void update(float delta) {
 		 if(Gdx.input.isKeyPressed(Keys.LEFT)) {
-	            x -= 10;
+			 world.getPanda().move(Panda.DIRECTION_LEFT);
 	        }
-	        if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
-	            x += 10;
+		 if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
+			 world.getPanda().move(Panda.DIRECTION_RIGHT);
 	        }
 	    }
 	 }
