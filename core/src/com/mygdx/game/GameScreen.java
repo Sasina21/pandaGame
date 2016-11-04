@@ -22,13 +22,10 @@ public class GameScreen extends ScreenAdapter {
 	
 	
 	public GameScreen(PandaGame pandaGame){
-
 		this.pandaGame = pandaGame;
 		world = new World(pandaGame);
 		worldRenderer = new WorldRenderer(pandaGame,world);
 		pandaImg = new Texture("panda.png");
-		
-		
 	}
 	
 	@Override
