@@ -11,22 +11,26 @@ public class WorldRenderer {
 private PandaGame pandaGame;
 private World world;
 private Texture pandaImg;
+public static final int BEAR_SIZE = 92;
+ 
 
 	public WorldRenderer(PandaGame pandaGame, World world) {
-        this.pandaGame = pandaGame;
+		
+		this.pandaGame = pandaGame;
         
         SpriteBatch batch = pandaGame.batch;
  
         this.world = world;
- 
+        
         pandaImg = new Texture("panda.png");
+        
     }
 	
 	public void render(float delta) {
 		
 		SpriteBatch batch = pandaGame.batch;
+		Vector2 pos = world.getPanda().getPosition();
         batch.begin();
-        Vector2 pos = world.getPanda().getPosition();
         batch.draw(pandaImg, pos.x, pos.y);
         batch.end();
     }

@@ -10,20 +10,25 @@ import com.badlogic.gdx.math.Vector2;
  
 public class GameScreen extends ScreenAdapter {
 	private PandaGame pandaGame;
-	
 	private Texture pandaImg;
-	
 	private Panda panda;
 	
 	World world;
 	WorldRenderer worldRenderer;
+
+
+	
+
+	
 	
 	public GameScreen(PandaGame pandaGame){
+
 		this.pandaGame = pandaGame;
-		pandaImg = new Texture("panda.png");
 		world = new World(pandaGame);
 		worldRenderer = new WorldRenderer(pandaGame,world);
-
+		pandaImg = new Texture("panda.png");
+		
+		
 	}
 	
 	@Override
@@ -32,14 +37,20 @@ public class GameScreen extends ScreenAdapter {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		worldRenderer.render(delta);
+        
+		
     }
 	
 	 private void update(float delta) {
 		 if(Gdx.input.isKeyPressed(Keys.LEFT)) {
-			 world.getPanda().move(Panda.DIRECTION_LEFT);
-	        }
+			 world.getPanda().setNextDirection(Panda.DIRECTION_LEFT);
+		 }
 		 if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
-			 world.getPanda().move(Panda.DIRECTION_RIGHT);
-	        }
-	    }
+			 world.getPanda().setNextDirection(Panda.DIRECTION_RIGHT);
+		 }
+		 world.update(delta);
 	 }
+}
+
+	 
+	 
