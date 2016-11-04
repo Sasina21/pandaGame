@@ -29,8 +29,8 @@ public static final int BEAR_SIZE = 92;
 	public void render(float delta) {
 		
 		SpriteBatch batch = pandaGame.batch;
-		Vector2 pos = world.getPanda().getPosition();
         batch.begin();
+        Vector2 pos = world.getPanda().getPosition();
         batch.draw(pandaImg, pos.x, pos.y);
         batch.end();
     }

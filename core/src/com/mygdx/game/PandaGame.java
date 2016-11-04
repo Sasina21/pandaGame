@@ -27,7 +27,7 @@ public class PandaGame extends Game {
 	public void create () {
 		
 		batch = new SpriteBatch();
-		//setScreen(new GameScreen(this));
+		setScreen(new GameScreen(this));
 		//background = new Texture("view.jpg");
 		
 	/*
