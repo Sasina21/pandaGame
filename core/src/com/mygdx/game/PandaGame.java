@@ -75,7 +75,9 @@ public class PandaGame extends Game {
 	public void resize (int width, int height) {
 		 this.scrollingBackground.resize(width, height);
 		 super.resize(width, height);
+		 
 	 }
+	
 	@Override
 	public void dispose () {
 		 batch.dispose();

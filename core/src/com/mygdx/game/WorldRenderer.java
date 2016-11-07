@@ -31,6 +31,11 @@ public class WorldRenderer {
         batch.begin();
         Vector2 pos = world.getPanda().getPosition();
         batch.draw(background, 0, 0);
+        batch.end();
+        
+        pandaGame.scrollingBackground.updateAndRender(delta, pandaGame.batch);
+        
+        batch.begin(); 
         batch.draw(pandaImg, pos.x, pos.y);
         batch.end();
     }
