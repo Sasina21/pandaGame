@@ -5,7 +5,6 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
  
 public class GameScreen extends ScreenAdapter {
@@ -14,31 +13,42 @@ public class GameScreen extends ScreenAdapter {
 	private Panda panda;
 	World world;
 	WorldRenderer worldRenderer;
+	private Vector2 posPandaRight;
+	private Vector2 posPandaLeft;
 	
 	public GameScreen(PandaGame pandaGame) {
 		this.pandaGame = pandaGame;
 		world = new World(pandaGame);
 		worldRenderer = new WorldRenderer(pandaGame,world);
 		pandaImg = new Texture("panda.png");
+		//posPandaLeft = new Vector2 (0,170);
+		//posPandaRight = new Vector2(450,170);
+		
 		
 	}
 	
 	@Override
     public void render(float delta) {
 		
-		update(delta);
+	update(delta);
+		
 		Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		worldRenderer.render(delta);
 		
     }
 	
+	    
 	 private void update(float delta) {
 		 if(Gdx.input.isKeyPressed(Keys.LEFT)) {
-			 world.getPanda().setNextDirection(Panda.DIRECTION_LEFT);
+			
+				world.getPanda().setNextDirection(Panda.DIRECTION_LEFT);			
+		 
 		 }
 		 if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
+			 
 			 world.getPanda().setNextDirection(Panda.DIRECTION_RIGHT);
+		 
 		 }
 		 world.update(delta);
 	 }

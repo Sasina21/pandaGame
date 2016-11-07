@@ -17,58 +17,20 @@ public class PandaGame extends Game {
 	public static final int WIDTH = 500;
 	public SpriteBatch batch;
 	public ScrollingBackground scrollingBackground;
-	//Texture background;
-	//OrthographicCamera camera;
-	//TextureRegion bamboo_left;
-	//TextureRegion bamboo_right;
-	
-	
 	
 	
 	@Override
 	public void create () {
 		
 		batch = new SpriteBatch();
-		setScreen(new GameScreen(this));
+		setScreen(new MainMenuScreen(this));
 		this.scrollingBackground = new ScrollingBackground();
-		//background = new Texture("view.jpg");
-		
-	/*
-		camera = new OrthographicCamera();
-		camera.setToOrtho(false, 500, 700);
-		bamboo_left = new TextureRegion(new Texture("bamboo-left.png"));
-		bamboo_right = new TextureRegion(new Texture("bamboo-right.png"));
-		*/
 
 	}
 	
-
-	private void drawWorld() {
-		/*batch.begin();
-
-		batch.draw(bamboo_left, 0, 0);
-		batch.draw(bamboo_left, 0 ,bamboo_left.getRegionHeight());
-		
-		
-		batch.draw(bamboo_right, 395, 0);
-		batch.draw(bamboo_right, 395,bamboo_right.getRegionHeight());
-
-		batch.end();
-		*/
-	}
 	@Override
 	public void render () {
 		super.render();
-		/*
-		Gdx.gl.glClearColor(0, 1, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-	//camera.update();
-		//batch.setProjectionMatrix(camera.combined);
-		/*
-		batch.begin();
-		batch.draw(background, 0, 0);
-		batch.end();*/
-		//drawWorld();
 		
 	}
 	
@@ -81,7 +43,6 @@ public class PandaGame extends Game {
 	@Override
 	public void dispose () {
 		 batch.dispose();
-		 //background.dispose();
 		
 	}
 }
