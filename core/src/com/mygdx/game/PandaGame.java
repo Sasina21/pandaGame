@@ -12,15 +12,17 @@ import com.badlogic.gdx.math.Vector2;
 
 public class PandaGame extends Game {
 	WorldRenderer worldRenderer;
+	GameScreen gameScreen;
 	public static final int HEIGHT = 700;
 	public static final int WIDTH = 500;
 	public SpriteBatch batch;
+	public ScrollingBackground scrollingBackground;
 	//Texture background;
 	//OrthographicCamera camera;
-	/*TextureRegion bamboo_left;
-	TextureRegion bamboo_right;
+	//TextureRegion bamboo_left;
+	//TextureRegion bamboo_right;
 	
-	*/
+	
 	
 	
 	@Override
@@ -28,6 +30,7 @@ public class PandaGame extends Game {
 		
 		batch = new SpriteBatch();
 		setScreen(new GameScreen(this));
+		this.scrollingBackground = new ScrollingBackground();
 		//background = new Texture("view.jpg");
 		
 	/*
@@ -36,6 +39,7 @@ public class PandaGame extends Game {
 		bamboo_left = new TextureRegion(new Texture("bamboo-left.png"));
 		bamboo_right = new TextureRegion(new Texture("bamboo-right.png"));
 		*/
+
 	}
 	
 
@@ -44,6 +48,8 @@ public class PandaGame extends Game {
 
 		batch.draw(bamboo_left, 0, 0);
 		batch.draw(bamboo_left, 0 ,bamboo_left.getRegionHeight());
+		
+		
 		batch.draw(bamboo_right, 395, 0);
 		batch.draw(bamboo_right, 395,bamboo_right.getRegionHeight());
 
@@ -66,6 +72,10 @@ public class PandaGame extends Game {
 		
 	}
 	
+	public void resize (int width, int height) {
+		 this.scrollingBackground.resize(width, height);
+		 super.resize(width, height);
+	 }
 	@Override
 	public void dispose () {
 		 batch.dispose();

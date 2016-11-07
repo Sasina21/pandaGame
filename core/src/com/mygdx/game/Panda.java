@@ -16,7 +16,7 @@ public class Panda {
 
     }   
     
-   public void setNextDirection(int dir) {
+    public void setNextDirection(int dir) {
         nextDirection = dir;
     }
  

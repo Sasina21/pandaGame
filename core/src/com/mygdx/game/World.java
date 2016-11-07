@@ -1,5 +1,7 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
 public class World {
@@ -17,5 +19,9 @@ public class World {
     }
     public void update(float delta) {
        panda.update();
+       
+		
+	
+		
     }
 }

@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
 public class WorldRenderer {
@@ -12,6 +13,8 @@ public class WorldRenderer {
 	private World world;
 	private Texture pandaImg;
 	public static final int BEAR_SIZE = 92;
+
+	
  
 
 	public WorldRenderer(PandaGame pandaGame, World world) {
@@ -20,7 +23,7 @@ public class WorldRenderer {
         this.world = world;
         pandaImg = new Texture("panda.png");
         background = new Texture("view.jpg");
-    }
+	}
 	
 	public void render(float delta) {
 		

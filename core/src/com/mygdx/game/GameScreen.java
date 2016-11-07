@@ -15,17 +15,21 @@ public class GameScreen extends ScreenAdapter {
 	
 	World world;
 	WorldRenderer worldRenderer;
+	
+	
 
 
 	
 
 	
 	
-	public GameScreen(PandaGame pandaGame){
+	public GameScreen(PandaGame pandaGame) {
 		this.pandaGame = pandaGame;
 		world = new World(pandaGame);
 		worldRenderer = new WorldRenderer(pandaGame,world);
 		pandaImg = new Texture("panda.png");
+	
+		
 	}
 	
 	@Override
@@ -34,6 +38,7 @@ public class GameScreen extends ScreenAdapter {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		worldRenderer.render(delta);
+		pandaGame.scrollingBackground.updateAndRender(delta, pandaGame.batch);
         
 		
     }
@@ -47,6 +52,11 @@ public class GameScreen extends ScreenAdapter {
 		 }
 		 world.update(delta);
 	 }
+	 /*public void resize (int width, int height) {
+		 this.scrollingBackground.resize(width, height);
+		 super.resize(width, height);
+	 }
+	 */
 }
 
 	 
