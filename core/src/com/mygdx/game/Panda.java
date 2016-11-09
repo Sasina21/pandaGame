@@ -12,7 +12,7 @@ public class Panda {
 	 
     public Panda(int x, int y) {
         position = new Vector2(x,y);
-        //currentDirection = DIRECTION_STILL;
+        currentDirection = DIRECTION_STILL;
         
         nextDirection = DIRECTION_STILL;
  
@@ -45,10 +45,12 @@ public class Panda {
         
     }
     
-   public void update() {
+    
+    public void update() {
         currentDirection = nextDirection;
         position.x += SPEED * DIR_OFFSETS[currentDirection][0];
  
     }
-    
-}
+   }
+   
+ 

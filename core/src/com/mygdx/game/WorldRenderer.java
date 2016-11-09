@@ -32,7 +32,7 @@ public class WorldRenderer {
         pandaGame.scrollingBackground.updateAndRender(delta, pandaGame.batch);
         
         batch.begin(); 
-        batch.draw(pandaImg, pos().x, pos().y);
+        batch.draw(pandaImg, pos().x, pos().y,120,180);
         batch.end();
     }
 	public Vector2 pos () {

@@ -27,30 +27,41 @@ public class GameScreen extends ScreenAdapter {
 	
 	@Override
     public void render(float delta) {
-		
 		update(delta);
-		if (worldRenderer.pos().x == pos_LeftEdge ||worldRenderer.pos().x == pos_RightEdge ) {
+		stoppedpos();
+		/*if (worldRenderer.pos().x <= pos_LeftEdge ||worldRenderer.pos().x >= pos_RightEdge ) {
 			world.getPanda().setNextDirection(Panda.DIRECTION_STILL);	
 		}
+		*/
+		
 		Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		worldRenderer.render(delta);
 		
     }
-
 	
-	 private void update(float delta) {
-		 if(Gdx.input.isKeyPressed(Keys.LEFT)) {
+	public void stoppedpos () {
+		if (worldRenderer.pos().x == pos_LeftEdge ||worldRenderer.pos().x == pos_RightEdge ) {
+			world.getPanda().setNextDirection(Panda.DIRECTION_STILL);	
+		}
+	}
+	
+	private void update(float delta) {
+		 if (Gdx.input.isKeyPressed(Keys.SPACE)) {
+			 if (worldRenderer.pos().x == pos_LeftEdge && worldRenderer.pos().x < pos_RightEdge ){
 				
-			world.getPanda().setNextDirection(Panda.DIRECTION_LEFT);			
+				world.getPanda().setNextDirection(Panda.DIRECTION_RIGHT);			
+
 		 }
-		 
-		 if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
+
+			 if(worldRenderer.pos().x == pos_RightEdge && worldRenderer.pos().x > pos_LeftEdge) {
 			 
-			world.getPanda().setNextDirection(Panda.DIRECTION_RIGHT);
+				 world.getPanda().setNextDirection(Panda.DIRECTION_LEFT);
 		 
+		 }
 		 }
 		 world.update(delta);
+		 
 	 }
 }
 
