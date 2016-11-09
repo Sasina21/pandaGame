@@ -12,9 +12,6 @@ public class WorldRenderer {
 	private PandaGame pandaGame;
 	private World world;
 	private Texture pandaImg;
-	public static final int BEAR_SIZE = 92;
-
-	
  
 
 	public WorldRenderer(PandaGame pandaGame, World world) {
@@ -26,18 +23,21 @@ public class WorldRenderer {
 	}
 	
 	public void render(float delta) {
-		
+		pos();
 		SpriteBatch batch = pandaGame.batch;
         batch.begin();
-        Vector2 pos = world.getPanda().getPosition();
         batch.draw(background, 0, 0);
         batch.end();
         
         pandaGame.scrollingBackground.updateAndRender(delta, pandaGame.batch);
         
         batch.begin(); 
-        batch.draw(pandaImg, pos.x, pos.y);
+        batch.draw(pandaImg, pos().x, pos().y);
         batch.end();
     }
+	public Vector2 pos () {
+		return world.getPanda().getPosition();
+	}
+	
 }
 

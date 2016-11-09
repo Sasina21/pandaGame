@@ -23,7 +23,8 @@ public class PandaGame extends Game {
 	public void create () {
 		
 		batch = new SpriteBatch();
-		setScreen(new MainMenuScreen(this));
+		//setScreen(new MainMenuScreen(this));
+		setScreen(new GameScreen(this));
 		this.scrollingBackground = new ScrollingBackground();
 
 	}

@@ -8,11 +8,14 @@ public class Panda {
 	private int currentDirection;
     private int nextDirection;
     World world;
+  
 	 
     public Panda(int x, int y) {
         position = new Vector2(x,y);
-        currentDirection = DIRECTION_STILL;
+        //currentDirection = DIRECTION_STILL;
+        
         nextDirection = DIRECTION_STILL;
+ 
 
     }   
     
@@ -27,12 +30,14 @@ public class Panda {
     private static final int [][] DIR_OFFSETS = new int [][] {
         {1,0},
         {-1,0},
-        {0,0}
+        {0,0},
+    
     };
     
     public static final int DIRECTION_RIGHT = 0;
     public static final int DIRECTION_LEFT = 1;
     public static final int DIRECTION_STILL = 2;
+ 
     
     
     public void move(int dir) { 
@@ -43,6 +48,7 @@ public class Panda {
    public void update() {
         currentDirection = nextDirection;
         position.x += SPEED * DIR_OFFSETS[currentDirection][0];
+ 
     }
     
 }

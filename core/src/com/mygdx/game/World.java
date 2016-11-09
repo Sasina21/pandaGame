@@ -11,7 +11,7 @@ public class World {
     
     World(PandaGame pandaGame) {
         this.pandaGame = pandaGame;
-        panda = new Panda(0,170);
+        panda = new Panda(0,120);
     
     }
  

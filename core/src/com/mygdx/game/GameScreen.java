@@ -13,16 +13,14 @@ public class GameScreen extends ScreenAdapter {
 	private Panda panda;
 	World world;
 	WorldRenderer worldRenderer;
-	private Vector2 posPandaRight;
-	private Vector2 posPandaLeft;
+	public static final int pos_LeftEdge = 0;
+	public static final int pos_RightEdge = 420;
 	
 	public GameScreen(PandaGame pandaGame) {
 		this.pandaGame = pandaGame;
 		world = new World(pandaGame);
 		worldRenderer = new WorldRenderer(pandaGame,world);
 		pandaImg = new Texture("panda.png");
-		//posPandaLeft = new Vector2 (0,170);
-		//posPandaRight = new Vector2(450,170);
 		
 		
 	}
@@ -30,24 +28,26 @@ public class GameScreen extends ScreenAdapter {
 	@Override
     public void render(float delta) {
 		
-	update(delta);
-		
+		update(delta);
+		if (worldRenderer.pos().x == pos_LeftEdge ||worldRenderer.pos().x == pos_RightEdge ) {
+			world.getPanda().setNextDirection(Panda.DIRECTION_STILL);	
+		}
 		Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		worldRenderer.render(delta);
 		
     }
+
 	
-	    
 	 private void update(float delta) {
 		 if(Gdx.input.isKeyPressed(Keys.LEFT)) {
-			
-				world.getPanda().setNextDirection(Panda.DIRECTION_LEFT);			
-		 
+				
+			world.getPanda().setNextDirection(Panda.DIRECTION_LEFT);			
 		 }
+		 
 		 if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
 			 
-			 world.getPanda().setNextDirection(Panda.DIRECTION_RIGHT);
+			world.getPanda().setNextDirection(Panda.DIRECTION_RIGHT);
 		 
 		 }
 		 world.update(delta);
