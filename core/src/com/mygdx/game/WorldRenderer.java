@@ -11,14 +11,17 @@ public class WorldRenderer {
 	Texture background;
 	private PandaGame pandaGame;
 	private World world;
-	private Texture pandaImg;
+	private Texture pandaImg_Left;
+	private Texture pandaImg_Right;
+	private Texture pandaImg_Mid;
  
 
 	public WorldRenderer(PandaGame pandaGame, World world) {
 		this.pandaGame = pandaGame;
-        SpriteBatch batch = pandaGame.batch;
         this.world = world;
-        pandaImg = new Texture("panda.png");
+        pandaImg_Left = new Texture("panda_left.png");
+		pandaImg_Right = new Texture("panda_right.png");
+		pandaImg_Mid = new Texture("panda_mid.png");
         background = new Texture("view.jpg");
 	}
 	
@@ -31,10 +34,26 @@ public class WorldRenderer {
         
         pandaGame.scrollingBackground.updateAndRender(delta, pandaGame.batch);
         
-        batch.begin(); 
-        batch.draw(pandaImg, pos().x, pos().y,120,180);
-        batch.end();
+        picPanda();
     }
+	
+	public void picPanda () {
+		SpriteBatch batch = pandaGame.batch;
+		if(pos().x == GameScreen.pos_LeftEdge) {
+			batch.begin(); 
+	        batch.draw(pandaImg_Left, pos().x, pos().y,120,180);
+	        batch.end();
+		}else if(pos().x == GameScreen.pos_RightEdge) {
+			batch.begin(); 
+	        batch.draw(pandaImg_Right, pos().x, pos().y,120,180);
+	        batch.end();
+		}else {
+			batch.begin(); 
+	        batch.draw(pandaImg_Mid, pos().x, pos().y,100,150);
+	        batch.end();
+		}
+	}
+	
 	public Vector2 pos () {
 		return world.getPanda().getPosition();
 	}

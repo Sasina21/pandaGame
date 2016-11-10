@@ -6,8 +6,8 @@ import com.badlogic.gdx.math.Vector2;
 
 public class World {
     private Panda panda;
-    private Panda rightpanda;
     private PandaGame pandaGame;
+	WorldRenderer worldRenderer;
     
     World(PandaGame pandaGame) {
         this.pandaGame = pandaGame;
@@ -18,11 +18,11 @@ public class World {
     Panda getPanda() {
         return panda;
     }
+    
+  
+   
     public void update(float delta) {
        panda.update();
        
-		
-	
-		
     }
 }

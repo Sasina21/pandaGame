@@ -51,6 +51,7 @@ public class Panda {
         position.x += SPEED * DIR_OFFSETS[currentDirection][0];
  
     }
+    
    }
    
  
