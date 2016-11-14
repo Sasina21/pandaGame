@@ -9,20 +9,22 @@ import com.badlogic.gdx.math.Vector2;
 
 public class WorldRenderer {
 	Texture background;
+
 	private PandaGame pandaGame;
 	private World world;
 	private Texture pandaImg_Left;
 	private Texture pandaImg_Right;
 	private Texture pandaImg_Mid;
- 
 
 	public WorldRenderer(PandaGame pandaGame, World world) {
 		this.pandaGame = pandaGame;
         this.world = world;
+        
         pandaImg_Left = new Texture("panda_left.png");
 		pandaImg_Right = new Texture("panda_right.png");
 		pandaImg_Mid = new Texture("panda_mid.png");
         background = new Texture("view.jpg");
+       
 	}
 	
 	public void render(float delta) {
@@ -31,15 +33,16 @@ public class WorldRenderer {
         batch.begin();
         batch.draw(background, 0, 0);
         batch.end();
-        
         pandaGame.scrollingBackground.updateAndRender(delta, pandaGame.batch);
-        
         picPanda();
+        
+        
+        
     }
 	
 	public void picPanda () {
 		SpriteBatch batch = pandaGame.batch;
-		if(pos().x == GameScreen.pos_LeftEdge) {
+		if (pos().x == GameScreen.pos_LeftEdge) {
 			batch.begin(); 
 	        batch.draw(pandaImg_Left, pos().x, pos().y,120,180);
 	        batch.end();

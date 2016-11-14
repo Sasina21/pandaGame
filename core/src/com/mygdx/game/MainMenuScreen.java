@@ -11,15 +11,13 @@ public class MainMenuScreen implements Screen {
 
 	private static final int PLAY_BUTTON_WIDTH = 100;
 	private static final int PLAY_BUTTON_HEIGHT = 50;
-	private static final int PLAY_BUTTON_Y = 380;
+	private static final int PLAY_BUTTON_Y = 375;
 	private static final int EXIT_BUTTON_WIDTH = 50;
 	private static final int EXIT_BUTTON_HEIGHT = 50;
 	PandaGame pandaGame;
 	Texture background_menu;
 	Texture playButtonActive;
 	Texture playButtonInactive;
-	Texture exitButtonActive;
-	Texture exitButtonInactive;
 	
 	public MainMenuScreen (PandaGame pandaGame) {
 		this.pandaGame = pandaGame;
@@ -27,8 +25,6 @@ public class MainMenuScreen implements Screen {
 		playButtonInactive = new Texture ("playInactive.png");
 		background_menu = new Texture ("mainmenu.jpg");
 		
-		exitButtonActive = new Texture ("exitActive.png");
-		exitButtonInactive = new Texture ("exitInactive.png");
 	}
 	@Override
 	public void show() {
@@ -45,24 +41,7 @@ public class MainMenuScreen implements Screen {
         batch.draw(background_menu, 0, 0);
         batch.end();
         playButton();
-        exitButton();
         
-	}
-
-	public void exitButton () {
-		int x = pandaGame.WIDTH - EXIT_BUTTON_WIDTH;
-		int y = PandaGame.HEIGHT - EXIT_BUTTON_HEIGHT;
-		pandaGame.batch.begin();
-        if (Gdx.input.getX() < pandaGame.WIDTH && Gdx.input.getX() > x && PandaGame.HEIGHT - Gdx.input.getY() < pandaGame.HEIGHT && PandaGame.HEIGHT - Gdx.input.getY() > y ) {
-        	pandaGame.batch.draw(exitButtonActive, x, y, EXIT_BUTTON_WIDTH ,EXIT_BUTTON_HEIGHT);
-        	if (Gdx.input.isTouched()) {
-        		this.dispose();
-        		Gdx.app.exit();
-        	}
-        } else {
-        	pandaGame.batch.draw(exitButtonInactive, x, y, EXIT_BUTTON_WIDTH ,EXIT_BUTTON_HEIGHT);
-        }
-        pandaGame.batch.end();
 	}
 
 	public void playButton () {

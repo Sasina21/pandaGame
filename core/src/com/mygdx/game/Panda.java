@@ -8,6 +8,7 @@ public class Panda {
 	private int currentDirection;
     private int nextDirection;
     World world;
+ 
   
 	 
     public Panda(int x, int y) {

@@ -19,6 +19,7 @@ public class PandaGame extends Game {
 	public ScrollingBackground scrollingBackground;
 	
 	
+	
 	@Override
 	public void create () {
 		
@@ -26,6 +27,7 @@ public class PandaGame extends Game {
 		setScreen(new MainMenuScreen(this));
 		//setScreen(new GameScreen(this));
 		this.scrollingBackground = new ScrollingBackground();
+		
 
 	}
 	
@@ -40,6 +42,8 @@ public class PandaGame extends Game {
 		 super.resize(width, height);
 		 
 	 }
+	 
+	 
 	 
 	
 	@Override

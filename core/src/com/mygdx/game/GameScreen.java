@@ -1,5 +1,8 @@
 package com.mygdx.game;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.ScreenAdapter;
@@ -9,19 +12,32 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
  
 public class GameScreen extends ScreenAdapter {
+	public static final int pos_LeftEdge = 0;
+	public static final int pos_RightEdge = 380;
+	
+	public static final float MIN_ENEMY_SPAWN_TIME = 0.8f;
+	public static final float MAX_ENEMY_SPAWN_TIME = 2;
+	
 	private PandaGame pandaGame;
 	private Panda panda;
 	World world;
 	WorldRenderer worldRenderer;
-	public static final int pos_LeftEdge = 0;
-	public static final int pos_RightEdge = 380;
 	
+	float enemySpawnTimer;
+	
+	Random random;
+	ArrayList<Enemy> enemyies;
 	
 	
 	public GameScreen(PandaGame pandaGame) {
 		this.pandaGame = pandaGame;
 		world = new World(pandaGame);
 		worldRenderer = new WorldRenderer(pandaGame,world);
+		
+		enemyies = new ArrayList<Enemy>();
+		
+		random = new Random();
+		enemySpawnTimer = random.nextFloat() * (MAX_ENEMY_SPAWN_TIME - MIN_ENEMY_SPAWN_TIME) + MIN_ENEMY_SPAWN_TIME;
 		
 		
 	}
@@ -34,11 +50,30 @@ public class GameScreen extends ScreenAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		worldRenderer.render(delta);
 		
-    }
+		//here
+		enemySpawnTimer -= delta;
+		if ( enemySpawnTimer <=0) {
+			enemySpawnTimer = random.nextFloat() * (MAX_ENEMY_SPAWN_TIME - MIN_ENEMY_SPAWN_TIME) + MIN_ENEMY_SPAWN_TIME;
+			enemyies.add(new Enemy(random.nextInt(Gdx.graphics.getWidth() - Enemy.WIDTH)));
+		}
+		
+		ArrayList<Enemy> enemysToRemove = new ArrayList<Enemy>();
+		for (Enemy enemy :enemyies) {
+			enemy.update(delta);
+			if(enemy.remove)
+				enemysToRemove.add(enemy);
+			}
+		enemyies.removeAll(enemysToRemove);
+    
+		
+		for (Enemy enemy : enemyies) {
+			enemy.render(pandaGame.batch);
+		}
+	}
 	
-	public void stoppedPos () {
+	public void stoppedPos() {
 		SpriteBatch batch = pandaGame.batch;
-		if (worldRenderer.pos().x == pos_LeftEdge ||worldRenderer.pos().x == pos_RightEdge ) {
+		if (worldRenderer.pos().x == pos_LeftEdge || worldRenderer.pos().x == pos_RightEdge) {
 			world.getPanda().setNextDirection(Panda.DIRECTION_STILL);	
 			}
 	}
@@ -46,18 +81,13 @@ public class GameScreen extends ScreenAdapter {
 	private void update(float delta) {
 		 if (Gdx.input.isKeyPressed(Keys.SPACE)) {
 			 if (worldRenderer.pos().x == pos_LeftEdge && worldRenderer.pos().x < pos_RightEdge) {
-				
 				world.getPanda().setNextDirection(Panda.DIRECTION_RIGHT);
 				}
-
-			 if(worldRenderer.pos().x == pos_RightEdge && worldRenderer.pos().x > pos_LeftEdge) {
-			 
+			 if (worldRenderer.pos().x == pos_RightEdge && worldRenderer.pos().x > pos_LeftEdge) {
 				 world.getPanda().setNextDirection(Panda.DIRECTION_LEFT);
 				 }
 		 }
-		 
 		 world.update(delta);
-		 
 	 }
 }
 
