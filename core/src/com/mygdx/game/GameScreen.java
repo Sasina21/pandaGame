@@ -9,14 +9,15 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
  
 public class GameScreen extends ScreenAdapter {
 	public static final int pos_LeftEdge = 0;
 	public static final int pos_RightEdge = 380;
 	
-	public static final float MIN_ENEMY_SPAWN_TIME = 0.8f;
-	public static final float MAX_ENEMY_SPAWN_TIME = 2;
+	public static final float MIN_ENEMY_SPAWN_TIME = 0.5f;
+	public static final float MAX_ENEMY_SPAWN_TIME = 1.5f;
 	
 	private PandaGame pandaGame;
 	private Panda panda;
@@ -37,7 +38,7 @@ public class GameScreen extends ScreenAdapter {
 		enemyies = new ArrayList<Enemy>();
 		
 		random = new Random();
-		enemySpawnTimer = random.nextFloat() * (MAX_ENEMY_SPAWN_TIME - MIN_ENEMY_SPAWN_TIME) + MIN_ENEMY_SPAWN_TIME;
+		enemySpawnTimer = MathUtils.random(MAX_ENEMY_SPAWN_TIME , MIN_ENEMY_SPAWN_TIME);
 		
 		
 	}
@@ -53,7 +54,7 @@ public class GameScreen extends ScreenAdapter {
 		//here
 		enemySpawnTimer -= delta;
 		if ( enemySpawnTimer <=0) {
-			enemySpawnTimer = random.nextFloat() * (MAX_ENEMY_SPAWN_TIME - MIN_ENEMY_SPAWN_TIME) + MIN_ENEMY_SPAWN_TIME;
+			enemySpawnTimer = MathUtils.random(MAX_ENEMY_SPAWN_TIME , MIN_ENEMY_SPAWN_TIME);
 			enemyies.add(new Enemy(random.nextInt(Gdx.graphics.getWidth() - Enemy.WIDTH)));
 		}
 		
