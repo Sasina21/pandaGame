@@ -11,8 +11,9 @@ public class World {
     private Panda panda;
    
     private PandaGame pandaGame;
-	WorldRenderer worldRenderer;
-    World(PandaGame pandaGame) {
+	private WorldRenderer worldRenderer;
+	
+    public World(PandaGame pandaGame) {
         this.pandaGame = pandaGame;
         panda = new Panda(0,50);
     }

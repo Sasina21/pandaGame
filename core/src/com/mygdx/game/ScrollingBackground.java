@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class ScrollingBackground {
 	
-	public static final int SPEED = 600;
+	public static final int SPEED = 650;
 	
 	Texture bamboo; 
 	float y1 ,y2;
