@@ -35,8 +35,8 @@ public class MainMenuScreen implements Screen {
 	@Override
 	public void render(float delta) {
 		SpriteBatch batch = pandaGame.batch;
-		//Gdx.gl.glClearColor(0.1f, 0.1f, 0.4f, 1);
-        //Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		Gdx.gl.glClearColor(0.1f, 0.1f, 0.4f, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
         batch.draw(background_menu, 0, 0);
         batch.end();

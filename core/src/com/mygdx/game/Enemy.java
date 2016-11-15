@@ -13,29 +13,31 @@ public class Enemy {
 	public static final float RIGHT_EDGE_ENEMY = 430;
 	public static final int WIDTH = 99;
 	public static final int HEIGHT = 132;
-	private static Texture snakeLeft;
-	private static Texture snakeRight;
-	private static Texture koalaLeft;
-	private static Texture koalaRight;
+	static Texture snakeLeft;
+	static Texture snakeRight;
+	static Texture koalaLeft;
+	static Texture koalaRight;
 	float x, y;
 	int speed = ScrollingBackground.SPEED;
-	Vector2 position;
+	private Vector2 position;
 	int temp;
 	public boolean remove = false;
 	private Random random;
 
 
 		public Enemy (int x) {
+			position = new Vector2(x,y);
 			this.x = x;
 			this.y = Gdx.graphics.getHeight();
 			snakeLeft = new Texture ("snakeLeft.png");
 			koalaLeft = new Texture ("koalaLeft.png");
 			snakeRight = new Texture ("snakeRight.png");
 			koalaRight = new Texture ("koalaRight.png");
-			position = new Vector2();
+			
 			temp = MathUtils.random(3);
 	
 		}
+		
 		
 		
 		public void update (float deltaTime) {
@@ -47,6 +49,7 @@ public class Enemy {
 		}
 		
 		public void render (SpriteBatch batch) {
+			
 			batch.begin();
 			if (temp == 0) {
 			batch.draw(snakeLeft, LEFT_EDGE_ENEMY, y);

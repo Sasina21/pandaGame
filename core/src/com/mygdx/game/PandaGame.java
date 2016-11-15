@@ -13,6 +13,7 @@ import com.badlogic.gdx.math.Vector2;
 public class PandaGame extends Game {
 	WorldRenderer worldRenderer;
 	GameScreen gameScreen;
+	GameOverScreen gameOverScreen;
 	public static final int HEIGHT = 700;
 	public static final int WIDTH = 500;
 	public SpriteBatch batch;
@@ -26,6 +27,7 @@ public class PandaGame extends Game {
 		batch = new SpriteBatch();
 		setScreen(new MainMenuScreen(this));
 		//setScreen(new GameScreen(this));
+		//this.setScreen(new GameOverScreen(this,0));
 		this.scrollingBackground = new ScrollingBackground();
 		
 

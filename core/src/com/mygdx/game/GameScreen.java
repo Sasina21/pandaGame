@@ -19,14 +19,14 @@ public class GameScreen extends ScreenAdapter {
 	public static final int pos_LeftEdge = 0;
 	public static final int pos_RightEdge = 380;
 	
-	public static final float MIN_ENEMY_SPAWN_TIME = 0.5f;
+	public static final float MIN_ENEMY_SPAWN_TIME = 0.3f;
 	public static final float MAX_ENEMY_SPAWN_TIME = 1.7f;
-	
+	private Enemy enemy;
 	private PandaGame pandaGame;
 	private Panda panda;
 	World world;
 	WorldRenderer worldRenderer;
-	
+	int x,y;
 	
 	float enemySpawnTimer;
 	
@@ -38,6 +38,8 @@ public class GameScreen extends ScreenAdapter {
 		this.pandaGame = pandaGame;
 		world = new World(pandaGame);
 		worldRenderer = new WorldRenderer(pandaGame,world);
+		panda = new Panda(x,y);
+		enemy = new Enemy(x);
 		
 		enemyies = new ArrayList<Enemy>();
 		
@@ -48,13 +50,14 @@ public class GameScreen extends ScreenAdapter {
 	
 	@Override
     public void render(float delta) {
-		
 		update(delta);
 		stoppedPos();
 		Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		worldRenderer.render(delta);
 		EnemyRender(delta);
+		
+		
 	}
 	
 	public void EnemyRender (float delta) {

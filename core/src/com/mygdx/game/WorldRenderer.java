@@ -1,28 +1,32 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Align;
 
 public class WorldRenderer {
 	private World world;
 	private PandaGame pandaGame;
-	
+	private BitmapFont scoreFont;
 	Texture background;
 
-	private Texture pandaImg_Left;
-	private Texture pandaImg_Right;
-	private Texture pandaImg_Mid;
-
+	static Texture pandaImg_Left;
+	static Texture pandaImg_Right;
+	static Texture pandaImg_Mid;
+	
+	static int score;
 	public WorldRenderer(PandaGame pandaGame, World world) {
 		this.pandaGame = pandaGame;
         this.world = world;
-    
-        
-        
+        scoreFont = new BitmapFont();
+        score = 0;
         pandaImg_Left = new Texture("panda_left.png");
 		pandaImg_Right = new Texture("panda_right.png");
 		pandaImg_Mid = new Texture("panda_mid.png");
@@ -30,9 +34,10 @@ public class WorldRenderer {
         background = new Texture("view.jpg");
        
 	}
-	
+	 
 	
 	public void render(float delta) {
+		score += 1 ;
 		pos();
 		SpriteBatch batch = pandaGame.batch;
         batch.begin();
@@ -41,7 +46,11 @@ public class WorldRenderer {
         pandaGame.scrollingBackground.updateAndRender(delta, pandaGame.batch);
         picPanda();
         
+        batch.begin();
         
+        GlyphLayout scoreLayout = new GlyphLayout(scoreFont,"Score: " + score ,Color.BLACK, 0, Align.left, false);
+        scoreFont.draw(pandaGame.batch ,scoreLayout, Gdx.graphics.getWidth() /2 - scoreLayout.width / 2, Gdx.graphics.getHeight() - scoreLayout.height - 10);
+        batch.end();
         
     }
 	
