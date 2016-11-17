@@ -5,27 +5,23 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
 
 public class MainMenuScreen implements Screen {
-
 	private static final int PLAY_BUTTON_WIDTH = 100;
 	private static final int PLAY_BUTTON_HEIGHT = 50;
 	private static final int PLAY_BUTTON_Y = 375;
-	private static final int EXIT_BUTTON_WIDTH = 50;
-	private static final int EXIT_BUTTON_HEIGHT = 50;
 	PandaGame pandaGame;
 	Texture background_menu;
 	Texture playButtonActive;
 	Texture playButtonInactive;
 	
-	public MainMenuScreen (PandaGame pandaGame) {
+	public MainMenuScreen(PandaGame pandaGame) {
 		this.pandaGame = pandaGame;
 		playButtonActive = new Texture ("playActive.png");
 		playButtonInactive = new Texture ("playInactive.png");
 		background_menu = new Texture ("mainmenu.jpg");
-		
 	}
+	
 	@Override
 	public void show() {
 		// TODO Auto-generated method stub
@@ -41,11 +37,10 @@ public class MainMenuScreen implements Screen {
         batch.draw(background_menu, 0, 0);
         batch.end();
         playButton();
-        
 	}
-
-	public void playButton () {
-		int x = pandaGame.WIDTH / 2 - PLAY_BUTTON_WIDTH / 2;
+	
+	public void playButton() {
+		int x = PandaGame.WIDTH / 2 - PLAY_BUTTON_WIDTH / 2;
 		pandaGame.batch.begin();
         if (Gdx.input.getX() < x + PLAY_BUTTON_WIDTH && Gdx.input.getX() > x && PandaGame.HEIGHT - Gdx.input.getY() < PLAY_BUTTON_Y + PLAY_BUTTON_HEIGHT && PandaGame.HEIGHT - Gdx.input.getY() > PLAY_BUTTON_Y ) {
         	pandaGame.batch.draw(playButtonActive, x, PLAY_BUTTON_Y, PLAY_BUTTON_WIDTH ,PLAY_BUTTON_HEIGHT);
