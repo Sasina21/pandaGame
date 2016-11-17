@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.utils.Align;
 
 public class GameOverScreen implements Screen {
-	Texture background;
+	Texture backgroundOver;
 	Texture replayButtonActive;
 	Texture replayButtonInactive;
 	BitmapFont scoreFont;
@@ -24,7 +24,7 @@ public class GameOverScreen implements Screen {
 		this.pandaGame = pandaGame;
 		this.score = WorldRenderer.score;
 		scoreFont = new BitmapFont();
-		background = new Texture ("gameover.jpg");
+		backgroundOver = new Texture ("gameover.jpg");
 		replayButtonActive = new Texture ("replaybutton.png");
 		replayButtonInactive = new Texture ("replaybutton2.png");
 		
@@ -56,7 +56,7 @@ public class GameOverScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         
         pandaGame.batch.begin();
-        pandaGame.batch.draw(background, 0, 0);
+        pandaGame.batch.draw(backgroundOver, 0, 0);
         
         GlyphLayout scoreLayout = new GlyphLayout(scoreFont,"Score: " + score ,Color.BLACK, 0, Align.left, false);
 		scoreFont.draw(pandaGame.batch, scoreLayout, Gdx.graphics.getWidth() /2 - scoreLayout.width /2, Gdx.graphics.getHeight()/2 - 1);

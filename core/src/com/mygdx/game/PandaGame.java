@@ -19,15 +19,13 @@ public class PandaGame extends Game {
 	public SpriteBatch batch;
 	public ScrollingBackground scrollingBackground;
 	
-	
+	public int count = 0;
 	
 	@Override
 	public void create () {
 		
 		batch = new SpriteBatch();
 		setScreen(new MainMenuScreen(this));
-		//setScreen(new GameScreen(this));
-		//this.setScreen(new GameOverScreen(this,0));
 		this.scrollingBackground = new ScrollingBackground();
 		
 
@@ -44,8 +42,6 @@ public class PandaGame extends Game {
 		 super.resize(width, height);
 		 
 	 }
-	 
-	 
 	 
 	
 	@Override

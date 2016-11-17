@@ -30,10 +30,10 @@ public class ScrollingBackground {
 		if (y2 + bamboo.getHeight() * imageScale <= 0) {
 			y2 = y1 + bamboo.getHeight() * imageScale;
 		}
-		batch.begin();
+	
 		batch.draw(bamboo , 0, y1, Gdx.graphics.getWidth(), bamboo.getHeight() * imageScale);
 		batch.draw(bamboo , 0, y2, Gdx.graphics.getWidth(), bamboo.getHeight() * imageScale);
-		batch.end();
+	
 		
 	}
 	public void resize (int width, int height) {
